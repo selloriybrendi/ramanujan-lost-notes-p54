@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramanujan Page 54 Notes</title>
+<meta name="description" content="Interactive checker for the two lost notes on page 54 of Ramanujan's lost notebook: circular summation, Borwein a(q^5), and the product obstruction.">
+<style>
+:root{--bg:#fbfbf9;--fg:#1d1d1b;--mut:#6b6b66;--card:#ffffff;--line:#e3e2dc;--acc:#1f5fa8;--ok:#1b7f3b;--bad:#b3261e;--soft:#eef3fa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#ecebe6;--mut:#a3a29c;--card:#1e1e1c;--line:#34332f;--acc:#7fb0ea;--ok:#6fcf8b;--bad:#f08a80;--soft:#1f2a38}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#ecebe6;--mut:#a3a29c;--card:#1e1e1c;--line:#34332f;--acc:#7fb0ea;--ok:#6fcf8b;--bad:#f08a80;--soft:#1f2a38}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:880px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.45rem;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:0 0 16px}
+.card h2{font-size:1.05rem;margin:0 0 10px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px}
+label{font-size:.85rem;color:var(--mut);display:block;margin-bottom:3px}
+input[type=number]{width:120px;padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--fg);font-size:15px}
+button{padding:7px 12px;border:1px solid var(--line);border-radius:7px;background:var(--soft);color:var(--fg);font-size:14px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{padding:6px 4px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mut);font-weight:500}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}
+.note{font-size:.85rem;color:var(--mut)}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;background:var(--soft);font-size:.8rem}
+.eq{background:var(--soft);border-radius:8px;padding:8px 10px;margin:6px 0;overflow-wrap:anywhere}
+a{color:var(--acc)}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+<h1>The two lost notes on page 54 of Ramanujan's lost notebook</h1>
+<p class="sub">On page 54 Ramanujan wrote "see note" after A³ − B³ (Entry 8.2.1) and after A³ + B³ (Entry 8.2.2); both notes are lost.
+Both missing identities are special cases of his cubic circular summation (Entry 8.2.3) on the same page, with the Borweins' cubic theta function
+a(q) = Σ<sub>m,n</sub> q<sup>m²+mn+n²</sup>. Everything below is computed in your browser.
+<span class="badge" id="selftest">self-test …</span></p>
+
+<section class="card">
+<h2>1. The two missing identities, coefficient by coefficient</h2>
+<div class="eq mono">Th. 1 &nbsp; A = f(−q⁷,−q⁸), B = q f(−q²,−q¹³): &nbsp; A³ − B³ = q² f³(−q³,−q¹²) + f(−q²,−q³) a(q⁵)</div>
+<div class="eq mono">Th. 2 &nbsp; A = f(−q⁴,−q¹¹), B = q f(−q,−q¹⁴): &nbsp; q(A³ + B³) = f³(−q⁶,−q⁹) − f(−q,−q⁴) a(q⁵)</div>
+<div class="row">
+<div><label for="N">number of coefficients N (10–3000)</label><input id="N" type="number" min="10" max="3000" value="500"></div>
+<button id="goN">Check</button>
+</div>
+<div class="scroll"><table id="outN" aria-live="polite"></table></div>
+<p class="note">Exact integer arithmetic on power series, f(a,b) = Σ a<sup>n(n+1)/2</sup>b<sup>n(n−1)/2</sup> summed directly; no division, no floating point. Sections 2–3 use floating point, with f(a,b) from the Jacobi triple product (−a;ab)<sub>∞</sub>(−b;ab)<sub>∞</sub>(ab;ab)<sub>∞</sub> and a(q) from its double sum.</p>
+</section>
+
+<section class="card">
+<h2>2. Evaluate both sides at a number q</h2>
+<div class="row">
+<div><label for="q">q (−0.95 … 0.95)</label><input id="q" type="number" min="-0.95" max="0.95" step="0.01" value="0.4"></div>
+<button id="goQ">Evaluate</button>
+</div>
+<div class="scroll"><table id="outQ" aria-live="polite"></table></div>
+</section>
+
+<section class="card">
+<h2>3. Ramanujan's circular summation (Entry 8.2.3) for any a, b</h2>
+<div class="eq mono">f³(ab²,a²b) + a f³(b,a³b²) + b f³(a,a²b³) = f(a,b) · a(ab), &nbsp; |ab| &lt; 1</div>
+<div class="row">
+<div><label for="aa">a</label><input id="aa" type="number" step="0.01" value="0.5"></div>
+<div><label for="bb">b</label><input id="bb" type="number" step="0.01" value="0.3"></div>
+<button id="goAB">Evaluate</button>
+<button id="pre1">a = −q³, b = −q² (gives Th. 1)</button>
+<button id="pre2">a = −q⁶, b = −q⁻¹ (gives Th. 2)</button>
+</div>
+<div class="scroll"><table id="outAB" aria-live="polite"></table></div>
+<p class="note">The presets use the q of section 2. In the paper the brace of Entry 8.2.3 is rewritten as a(q) through a³ = b³ + c³ (Borweins).</p>
+</section>
+
+<section class="card">
+<h2>4. Why a note was needed: the product obstruction</h2>
+<p class="note" style="margin-top:0">Every integer series 1 + … is uniquely ∏(1 − qⁿ)<sup>−cₙ</sup>. It is a (generalized) eta-quotient, i.e. a finite product of theta functions,
+exactly when (cₙ) is periodic. The recorded cube identities have a periodic quadratic cofactor; the two lost ones do not.</p>
+<div class="row">
+<div><label for="Nc">n ≤ (60–600)</label><input id="Nc" type="number" min="60" max="600" value="380"></div>
+<button id="goC">Compute exponents</button>
+</div>
+<div class="scroll"><table id="outC" aria-live="polite"></table></div>
+</section>
+
+<p class="note">Paper, programs and citation: <a href="https://doi.org/10.5281/zenodo.23030496">doi:10.5281/zenodo.23030496</a> ·
+<a href="https://github.com/selloriybrendi/ramanujan-lost-notes-p54">source code</a> ·
+<a href="https://otakhonkenjaev.com/papers/lost-notes-page-54/">paper page</a> · Otakhon U. Kenjaev, 2026.</p>
+</main>
+<script>
+"use strict";
+// ---------- exact power series (Number coefficients; values here stay far below 2^53) ----------
+function theta(a, b, N) { // f(-q^a, -q^b) truncated to N coefficients
+  const s = new Array(N).fill(0);
+  for (let n = 0; ; n++) {
+    let hit = false;
+    for (const m of (n ? [n, -n] : [0])) {
+      const e = a * m * (m + 1) / 2 + b * m * (m - 1) / 2;
+      if (e >= 0 && e < N) { s[e] += (m % 2 === 0) ? 1 : -1; hit = true; }
+    }
+    if (!hit && n > 0) break;
+  }
+  return s;
+}
+function mul(x, y, N) {
+  const r = new Array(N).fill(0);
+  for (let i = 0; i < N; i++) { const xi = x[i]; if (!xi) continue;
+    for (let j = 0; i + j < N; j++) if (y[j]) r[i + j] += xi * y[j]; }
+  return r;
+}
+const cube = (x, N) => mul(mul(x, x, N), x, N);
+const add = (x, y) => x.map((v, i) => v + y[i]);
+const sub = (x, y) => x.map((v, i) => v - y[i]);
+function shift(x, k) { const r = new Array(x.length).fill(0); for (let i = 0; i + k < x.length; i++) r[i + k] = x[i]; return r; }
+function borweinA(k, N) { // a(q^k)
+  const s = new Array(N).fill(0), M = Math.ceil(Math.sqrt(4 * N / (3 * k))) + 2;
+  for (let m = -M; m <= M; m++) for (let n = -M; n <= M; n++) { const e = k * (m * m + m * n + n * n); if (e < N) s[e]++; }
+  return s;
+}
+function theorems(N) {
+  const a5 = borweinA(5, N);
+  const A1 = theta(7, 8, N), B1 = shift(theta(2, 13, N), 1);
+  const L1 = sub(cube(A1, N), cube(B1, N));
+  const R1 = add(shift(cube(theta(3, 12, N), N), 2), mul(theta(2, 3, N), a5, N));
+  const A2 = theta(4, 11, N), B2 = shift(theta(1, 14, N), 1);
+  const L2 = shift(add(cube(A2, N), cube(B2, N)), 1);
+  const R2 = sub(cube(theta(6, 9, N), N), mul(theta(1, 4, N), a5, N));
+  return { L1, R1, L2, R2 };
+}
+function firstDiff(x, y) { for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return i; return -1; }
+
+// ---------- numerics ----------
+function powi(x, k) { if (k === 0) return 1; if (x === 0) return 0; const s = (x < 0 && k % 2) ? -1 : 1; return s * Math.exp(k * Math.log(Math.abs(x))); }
+function fnum(a, b) { // Ramanujan f(a,b) = (-a;ab)(-b;ab)(ab;ab), |ab|<1 (Jacobi triple product: no cancellation)
+  const q = a * b, big = Math.max(1, Math.abs(a), Math.abs(b));
+  let p = 1, qk = 1;
+  for (let k = 0; k < 1000000; k++) {
+    p *= (1 + a * qk) * (1 + b * qk) * (1 - qk * q);
+    qk *= q;
+    if (k > 2 && Math.abs(qk) * big < 1e-18) break;
+  }
+  return p;
+}
+function anum(q) { // Borwein a(q)
+  if (q === 0) return 1;
+  const M = Math.ceil(Math.sqrt(4 / 3 * 45 / -Math.log(Math.abs(q)))) + 2;
+  let s = 0;
+  for (let m = -M; m <= M; m++) for (let n = -M; n <= M; n++) s += powi(q, m * m + m * n + n * n);
+  return s;
+}
+const fmt = x => (Math.abs(x) < 1e-4 && x !== 0) || Math.abs(x) >= 1e6 ? x.toExponential(12) : x.toPrecision(15);
+const scaled = (x, y, ...terms) => Math.abs(x - y) / Math.max(1e-300, ...terms.map(Math.abs));
+const verdict = r => r < 1e-11 ? `<span class="ok">agree</span> (difference / largest term = ${r.toExponential(1)})` : `<span class="bad">differ</span> (difference / largest term = ${r.toExponential(1)})`;
+
+// ---------- exponent sequence c_n with BigInt ----------
+function exponents(P, N) { // P[0]=1, P = prod (1-q^n)^{-c_n}
+  const p = P.map(BigInt), l = new Array(N).fill(0n), c = new Array(N).fill(0n);
+  for (let k = 1; k < N; k++) { let v = BigInt(k) * p[k]; for (let i = 1; i < k; i++) v -= l[i] * p[k - i]; l[k] = v; }
+  for (let d = 1; d < N; d++) { let v = l[d]; for (let e = 1; e < d; e++) if (d % e === 0) v -= BigInt(e) * c[e]; c[d] = v / BigInt(d); }
+  return c;
+}
+function period(c, N, maxM) {
+  for (let M = 1; M <= maxM; M++) { let ok = true; for (let n = 1; n + M < N; n++) if (c[n] !== c[n + M]) { ok = false; break; } if (ok) return M; }
+  return 0;
+}
+function cofactors(N) {
+  const A1 = theta(7, 8, N), B1 = shift(theta(2, 13, N), 1), A2 = theta(4, 11, N), B2 = shift(theta(1, 14, N), 1);
+  const q2 = (A, B, sgn) => add(add(mul(A, A, N), mul(B, B, N)), mul(A, B, N).map(v => sgn * v));
+  return [
+    ["8.2.1", "A² − AB + B²", "recorded (8.2.8)", q2(A1, B1, -1)],
+    ["8.2.1", "A² + AB + B²", "lost A³ − B³", q2(A1, B1, 1)],
+    ["8.2.2", "A² + AB + B²", "recorded (8.2.12)", q2(A2, B2, 1)],
+    ["8.2.2", "A² − AB + B²", "lost A³ + B³", q2(A2, B2, -1)],
+  ];
+}
+
+// ---------- UI ----------
+const $ = id => document.getElementById(id);
+function runN() {
+  const N = Math.max(10, Math.min(3000, parseInt($("N").value) || 500));
+  const t0 = performance.now(), T = theorems(N), ms = (performance.now() - t0).toFixed(0);
+  const row = (name, L, R) => { const d = firstDiff(L, R);
+    return `<tr><td>${name}</td><td>${d < 0 ? `<span class="ok">${N}/${N} coefficients agree</span>` : `<span class="bad">first difference at q^${d}</span>`}</td></tr>
+    <tr><td class="note">first 16 (left)</td><td class="mono">${L.slice(0, 16).join(", ")}</td></tr>
+    <tr><td class="note">first 16 (right)</td><td class="mono">${R.slice(0, 16).join(", ")}</td></tr>`; };
+  $("outN").innerHTML = row("Theorem 1", T.L1, T.R1) + row("Theorem 2", T.L2, T.R2) + `<tr><td class="note">time</td><td class="note">${ms} ms</td></tr>`;
+}
+function runQ() {
+  let q = parseFloat($("q").value); if (!(Math.abs(q) <= 0.95)) q = 0.4; $("q").value = q;
+  const P = (e) => powi(q, e);
+  const A1 = fnum(-P(7), -P(8)), B1 = q * fnum(-P(2), -P(13)), a5 = anum(P(5));
+  const t1 = [A1 ** 3, B1 ** 3, q * q * fnum(-P(3), -P(12)) ** 3, fnum(-P(2), -P(3)) * a5];
+  const L1 = t1[0] - t1[1], R1 = t1[2] + t1[3];
+  const A2 = fnum(-P(4), -P(11)), B2 = q * fnum(-q, -P(14));
+  const t2 = [q * A2 ** 3, q * B2 ** 3, fnum(-P(6), -P(9)) ** 3, fnum(-q, -P(4)) * a5];
+  const L2 = t2[0] + t2[1], R2 = t2[2] - t2[3];
+  $("outQ").innerHTML = `<tr><th></th><th>left side</th><th>right side</th><th></th></tr>
+    <tr><td>Th. 1</td><td class="mono">${fmt(L1)}</td><td class="mono">${fmt(R1)}</td><td>${verdict(scaled(L1, R1, ...t1))}</td></tr>
+    <tr><td>Th. 2</td><td class="mono">${fmt(L2)}</td><td class="mono">${fmt(R2)}</td><td>${verdict(scaled(L2, R2, ...t2))}</td></tr>
+    <tr><td class="note">a(q⁵)</td><td class="mono" colspan="3">${fmt(a5)}</td></tr>`;
+}
+function runAB() {
+  const a = parseFloat($("aa").value), b = parseFloat($("bb").value);
+  if (!(Math.abs(a * b) < 1)) { $("outAB").innerHTML = `<tr><td class="bad">need |ab| &lt; 1</td></tr>`; return; }
+  const t = [fnum(a * b * b, a * a * b) ** 3, a * fnum(b, a ** 3 * b * b) ** 3, b * fnum(a, a * a * b ** 3) ** 3];
+  const L = t[0] + t[1] + t[2], R = fnum(a, b) * anum(a * b);
+  $("outAB").innerHTML = `<tr><td>left side</td><td class="mono">${fmt(L)}</td></tr><tr><td>f(a,b)·a(ab)</td><td class="mono">${fmt(R)}</td></tr><tr><td></td><td>${verdict(scaled(L, R, ...t, R))}</td></tr>`;
+}
+function runC() {
+  const N = Math.max(60, Math.min(600, parseInt($("Nc").value) || 380));
+  const t0 = performance.now();
+  const rows = cofactors(N).map(([e, name, role, P]) => { const c = exponents(P, N), M = period(c, N, 60);
+    const head = c.slice(1, 13).map(String).join(", ");
+    return `<tr><td>${e}</td><td class="mono">${name}</td><td>${role}</td><td>${M ? `<span class="ok">periodic, period ${M}</span>` : `<span class="bad">no period ≤ 60</span>`}</td><td class="mono note">${head}, …</td></tr>`; });
+  $("outC").innerHTML = `<tr><th>entry</th><th>cofactor</th><th>factor of</th><th>(cₙ), n ≤ ${N - 1}</th><th>c₁ … c₁₂</th></tr>` + rows.join("") +
+    `<tr><td colspan="5" class="note">${(performance.now() - t0).toFixed(0)} ms, exact BigInt arithmetic</td></tr>`;
+}
+function selfTest() {
+  const ok = [];
+  const T = theorems(400); ok.push(firstDiff(T.L1, T.R1) < 0, firstDiff(T.L2, T.R2) < 0);
+  const W = sub(cube(theta(7, 8, 400), 400), cube(shift(theta(2, 13, 400), 1), 400));
+  ok.push(firstDiff(W, add(shift(cube(theta(3, 12, 400), 400), 2), mul(theta(2, 3, 400), borweinA(1, 400), 400))) >= 0); // negative control: a(q) instead of a(q^5)
+  ok.push(borweinA(1, 8).join() === "1,6,0,6,6,0,0,12");
+  ok.push(theta(1, 2, 8).join() === "1,-1,-1,0,0,1,0,1"); // Euler: f(-q,-q^2) = (q;q)_inf
+  const per = cofactors(380).map(r => period(exponents(r[3], 380), 380, 60));
+  ok.push(per[0] === 15 && per[1] === 0 && per[2] === 15 && per[3] === 0);
+  const r = ok.filter(Boolean).length;
+  $("selftest").innerHTML = r === ok.length ? `self-test <span class="ok">${r}/${ok.length} passed</span>` : `self-test <span class="bad">${r}/${ok.length}</span>`;
+}
+$("goN").onclick = runN; $("goQ").onclick = runQ; $("goAB").onclick = runAB; $("goC").onclick = runC;
+$("pre1").onclick = () => { const q = parseFloat($("q").value) || 0.4; $("aa").value = (-(q ** 3)).toPrecision(8); $("bb").value = (-(q ** 2)).toPrecision(8); runAB(); };
+$("pre2").onclick = () => { const q = parseFloat($("q").value) || 0.4; $("aa").value = (-(q ** 6)).toPrecision(8); $("bb").value = (-1 / q).toPrecision(8); runAB(); };
+runN(); runQ(); runAB(); setTimeout(() => { selfTest(); runC(); }, 30);
+</script>
+</body>
+</html>

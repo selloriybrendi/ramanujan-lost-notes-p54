@@ -15,6 +15,7 @@ summation (Entry 8.2.3), and that with the Borweins' cubic theta function a(q) =
 The paper also gives an elementary second form, and computational evidence that the two missing combinations have no
 one- or two-term theta-product representation in a large explicit search space.
 
+- **Interactive checker:** https://otakhonkenjaev.com/ramanujan-lost-notes-p54/ — both identities coefficient by coefficient, numerical evaluation, Entry 8.2.3 for any a, b, and the product obstruction (runs in the browser)
 - **Paper:** [`paper/lost_notes_p54.pdf`](paper/lost_notes_p54.pdf) (7 pages, version 2) and its LaTeX source
 - **Programs:** `src/`
 
