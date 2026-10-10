@@ -1,0 +1,33 @@
+== Part A: exact rational certificate for the real zero of A^3+B^3 (Entry 8.2.2)
+   q = -1/2: P_4 = -0.799547049824940 (exact rational, denominator 97 digits)
+             tail bound S = 1.059e-22;  u2(q) in [-0.799547049824940, -0.799547049824940]
+MOS  u2(-1/2) > -1  (lower bound -0.799547049825 > -1)
+   q = -7/10: P_6 = -1.518639082492406 (exact rational, denominator 623 digits)
+             tail bound S = 3.059e-16;  u2(q) in [-1.518639082492407, -1.518639082492406]
+MOS  u2(-7/10) < -1  (upper bound -1.518639082492 < -1)
+   => by the intermediate value theorem there is q0 in (-7/10, -1/2) with u2(q0) = -1,
+      i.e. B(q0) = -A(q0) and A^3 + B^3 = 0 at q0.  (A(q0) != 0: product of nonzero factors.)
+
+== Part B: conjugation lemma u2(gamma tau) u1(tau) = -1, gamma = (7 6; 15 13)
+MOS  max |u2(gamma tau) u1(tau) + 1| over 6 points = 3.73e-38 < 1e-30
+
+== Part B: the real zero tau0 = 1/2 + i y0 of Entry 8.2.2 and its image tau1 = gamma^{-1} tau0
+   y0 = 0.0892810290423573619678203352569
+   q0 = -0.570655687750373190531958987919   (Im q0 = 2.36e-43)
+MOS  Entry 8.2.2 at q0: |A^3 + B^3| = 1.19e-31
+MOS  q0 in (-7/10, -1/2)
+   tau1 = 0.1170214340264009242947451 + 0.04369029467274724007221304 i
+   q1   = (0.5636114866671191426265557 + 0.5097575100458388852017501j)
+MOS  Entry 8.2.1 at tau1: |A - B| = 4.7e-32
+MOS  Entry 8.2.1 at tau1: |A^3 - B^3| = 1.03e-31
+MOS  |A(tau1)| = 0.853954 != 0
+
+== Part B: control — the recorded combinations are products, hence nonzero at tau0, tau1
+MOS  (8.2.8)  A^3+B^3 (8.2.1) at tau1: |value| = 1.24547 > 0
+MOS  (8.2.12) A^3-B^3 (8.2.2) at tau0: |value| = 1.43884 > 0
+MOS  (8.2.6)  A+B (8.2.1) at tau1: |value| = 1.70791 > 0
+MOS  (8.2.10) A-B (8.2.2) at tau0: |value| = 1.79208 > 0
+MOS  (8.2.8) matches A^3+B^3 at tau1
+MOS  (8.2.12) matches A^3-B^3 at tau0
+
+NATIJA: HAMMASI MOS

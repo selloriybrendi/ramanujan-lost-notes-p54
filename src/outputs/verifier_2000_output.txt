@@ -1,0 +1,17 @@
+== Entry 8.2.1: A = f(-q^7,-q^8), B = q f(-q^2,-q^13)
+  (8.2.6)  (A+B)·f(-q,-q^4) = f(-q^2,-q^3)·f(-q^5): MOS ✓  (2000 q-had)
+  (8.2.7)  A-B = f(-q^(2/3),-q) + q^(2/3)·f(-q^3,-q^12): MOS ✓  (2000 q-had)
+  (8.2.8)  (A^3+B^3)·f(-q^3,-q^12) = f(-q^6,-q^9)·f^3(-q^5): MOS ✓  (2000 q-had)
+  (8.2.9)  (A-B)^3·f(-q^3,-q^12) = f(-q^2,-q^3)·f^3(-q,-q^4) + q^2·f^4(-q^3,-q^12): MOS ✓  (2000 q-had)
+  THEOREM 3 (elementar)  A^3-B^3 = (8.2.9) + 3AB·(8.2.7): MOS ✓  (2000 q-had)
+== Entry 8.2.2: A = f(-q^4,-q^11), B = q f(-q,-q^14)
+  (8.2.10) (A-B)·f(-q^2,-q^3) = f(-q,-q^4)·f(-q^5): MOS ✓  (2000 q-had)
+  (8.2.11) q^(1/3)·(A+B) = f(-q^6,-q^9) - f(-q^(1/3),-q^(4/3)): MOS ✓  (2000 q-had)
+  (8.2.12) (A^3-B^3)·f(-q^6,-q^9) = f(-q^3,-q^12)·f^3(-q^5): MOS ✓  (2000 q-had)
+  (8.2.13) q·(A+B)^3·f(-q^6,-q^9) = f^4(-q^6,-q^9) - f(-q,-q^4)·f^3(-q^2,-q^3): MOS ✓  (2000 q-had)
+  THEOREM 4 (elementar)  A^3+B^3 = (8.2.13) - 3AB·(8.2.11): MOS ✓  (2000 q-had)
+== v2: circular summation (Entry 8.2.3) va Borwein a(q^5)
+  THEOREM 1 (circular)  A^3-B^3 = q^2 f^3(-q^3,-q^12) + f(-q^2,-q^3)·a(q^5): MOS ✓  (2000 q-had)
+  THEOREM 2 (circular)  q(A^3+B^3) = f^3(-q^6,-q^9) - f(-q,-q^4)·a(q^5): MOS ✓  (2000 q-had)
+
+JAMI: 12/12 MOS · 1.3s · EXIT=0

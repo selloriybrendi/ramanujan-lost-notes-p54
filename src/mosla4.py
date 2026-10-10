@@ -48,11 +48,14 @@ for r in (1,2,3):
             monlar.append((nomi, s))
 print("monomiallar:", len(monlar))
 
+import array
+def kalit(v): return array.array('q', v).tobytes()
+print("koeffitsientlar: c in {±1,±2,±3}; siljish 0..9; oyna K =", K)
 H = {}
 for nomi, s in monlar:
     for b in range(0, 10):
-        for c in (1,-1):
-            key = tuple(c*s[i-b] if i>=b else 0 for i in range(K))
+        for c in (1,-1,2,-2,3,-3):
+            key = kalit([c*s[i-b] if i>=b else 0 for i in range(K)])
             H.setdefault(key, (c,b,nomi))
 print("hash:", len(H))
 
@@ -76,7 +79,7 @@ def qidir(T, nomT, trivialso):
     for nomi, s in monlar:
         for a in range(0, 10):
             for c in (1,-1,2,-2,3,-3):
-                key = tuple(T[i]-c*(s[i-a] if i>=a else 0) for i in range(K))
+                key = kalit([T[i]-c*(s[i-a] if i>=a else 0) for i in range(K)])
                 if key in H:
                     c2,b2,n2 = H[key]
                     y = tuple(sorted([f"{c:+d}*q^{a}*{nomi}", f"{c2:+d}*q^{b2}*{n2}"]))

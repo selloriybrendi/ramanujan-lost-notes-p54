@@ -1,0 +1,68 @@
+== Lemma 6: e(r) = 15 B2(r/15)/2 = r^2/30 - r/2 + 5/4 (aniq kasr)
+MOS  e(2) = 23/60 = 23/60 = 23/60
+MOS  e(7) = -37/60 = -37/60 = -37/60
+MOS  e(1) = 47/60 = 47/60 = 47/60
+MOS  e(4) = -13/60 = -13/60 = -13/60
+== Lemma 6: u1 = g_(2/15,0)(15 tau)/g_(7/15,0)(15 tau), u2 = g_(1/15,0)/g_(4/15,0)  (literal Siegel vs theta code)
+MOS  u1 at tau=(0.13 + 0.21j): |g2/g7 - u1| = 4.06e-42
+MOS  u2 at tau=(0.13 + 0.21j): |g1/g4 - u2| = 6.42e-42
+MOS  u1 at tau=(-0.31 + 0.37j): |g2/g7 - u1| = 6.42e-42
+MOS  u2 at tau=(-0.31 + 0.37j): |g1/g4 - u2| = 2.3e-42
+== Lemma 7 proof, step 1 (K1 for quotients, row-vector action): g_(1/15,0)(g' t')/g_(4/15,0)(g' t') = g_(7/15,6)(t')/g_(28/15,24)(t')
+MOS  K1 quotient at tau=(0.13 + 0.21j): |LHS-RHS| = 2.92e-38
+MOS    15*gamma(tau) == gamma'(15 tau)
+MOS  K1 quotient at tau=(-0.31 + 0.37j): |LHS-RHS| = 1.72e-38
+MOS    15*gamma(tau) == gamma'(15 tau)
+== Lemma 7 proof, step 2 (K2 constants from the literal product)
+MOS  g_(7/15,6)/g_(7/15,0) = e^(4 pi i/5): |diff| = 1.54e-40
+MOS  g_(28/15,24)/g_(-2/15,0) = e^(-6 pi i/5): |diff| = 1.42e-39
+MOS  g_(-2/15,0) = -g_(2/15,0): |diff| = 0.0
+MOS  g_(7/15,6)/g_(7/15,0) = e^(4 pi i/5): |diff| = 1.34e-40
+MOS  g_(28/15,24)/g_(-2/15,0) = e^(-6 pi i/5): |diff| = 2.52e-39
+MOS  g_(-2/15,0) = -g_(2/15,0): |diff| = 2.98e-41
+MOS  (-1)^(b1 b2 + b1 + b2) for b=(0,6) is +1 and for b=(2,24) is (-1)^74 = +1
+MOS  exponents: 6*7/15 = 14/5 -> e^(14 pi i/5) = e^(4 pi i/5);  24*2/15 = 16/5 -> e^(-16 pi i/5) = e^(-6 pi i/5)
+MOS  4/5 + 6/5 = 2  (so -e^(2 pi i) = -1)
+== Lemma 7 statement: u2(gamma tau) u1(tau) = -1
+MOS    tau=(0.13 + 0.21j): |u2(g t) u1(t) + 1| = 1.7e-39
+MOS    tau=(-0.31 + 0.37j): |u2(g t) u1(t) + 1| = 1.3e-39
+MOS    tau=(0.41 + 0.07j): |u2(g t) u1(t) + 1| = 3.75e-38
+== Theorem 8(i): rational bounds and the printed digits
+MOS  P_4(-1/2) = -0.79954704982494040 begins with -0.79954704982494
+MOS  P_6(-7/10) = -1.51863908249240631 begins with -1.51863908249240
+MOS  S(-1/2,K=4) = 1.059e-22 < 1.1e-22
+MOS  S(-7/10,K=6) = 3.059e-16 < 3.1e-16
+MOS  |q|^(15(K+1)+1) <= 1/2 for both (hypothesis of the tail bound)
+MOS  u2(-1/2) > -1 > u2(-7/10) (with tails)
+MOS  -log(1-x) <= 2x for x<=1/2 (used in the tail bound): check at x=1/2
+== Theorem 8: numerical constants printed in the paper
+MOS  q0 = -0.57065568775037319053 begins with -0.570655687750373
+MOS  y0 = 0.089281029042357361968 begins with 0.089281029042
+MOS  y0 = -log|q0|/(2 pi)
+MOS  -7/10 < q0 < -1/2
+MOS  gamma^-1 = (13 -6; -15 7): gamma(gamma^-1 tau0) = tau0 exactly
+MOS  Re(gamma^-1 tau0) = -0.882978565973599 == 0.117021434026 - 1 (the paper's 'mod 1')
+MOS  q(tau1) = q(gamma^-1 tau0): shift by 1 does not change q
+MOS  tau1 = 0.117021434026401 + 0.0436902946727472 i rounds to 0.117021434026 + 0.043690294673 i
+MOS  q(tau1) = (0.563611486667119 + 0.509757510045839j) rounds to 0.563611486667 + 0.509757510046 i
+MOS  A1(tau1) = B1(tau1): |A-B| = 4.7e-32
+MOS  A1^3 - B1^3 = 0 and (A1-B1)^3 = 0 at tau1
+MOS  A2(q0) + B2(q0) = 0: |A+B| = 4.93e-32; A2^3+B2^3 = 1.19e-31
+== Remark 1: the four one-term products are nonzero at tau0 and tau1 (and equal the cubes)
+MOS  (8.2.6): |product| = 1.70791 > 0 and equals the direct combination (|diff| = 1.0e-40)
+MOS  (8.2.8): |product| = 1.24547 > 0 and equals the direct combination (|diff| = 6.98e-41)
+MOS  (8.2.10): |product| = 1.79208 > 0 and equals the direct combination (|diff| = 4.59e-41)
+MOS  (8.2.12): |product| = 1.43884 > 0 and equals the direct combination (|diff| = 1.61e-40)
+== Remark 2: Gamma_0(15) elements (checked to 30 digits in the paper)
+MOS  (1, 1, 15, 16): u1(g t) = u1(t) and u2(g t) = u2(t)
+MOS  (16, 1, 15, 1): u1(g t) = u1(t) and u2(g t) = u2(t)
+MOS  (4 1; 15 4): u1(g t) = 1/u1(t)
+MOS  (11 8; 15 11): u1(g t) = 1/u1(t)  (upper-left == -4 mod 15)
+MOS  (2 1; 15 8): u2(g t) = -u1(t)
+MOS  (13 6; 15 7): u2(g t) = -u1(t)
+MOS  (8 1; 15 2): u2(g t) = -1/u1(t)
+== Section 5.1 remark: u1 = omega at tau ~ 0.29434 + 0.06065 i; cofactor relations
+MOS  u1(tau) = omega at tau = (0.2943424898 + 0.06065058331j) (|u1-omega| = 8.97e-41); matches 0.29434+0.06065i
+MOS  1 - u + u^2 = 0 iff u in {-omega, -omega^2}
+
+AUDIT: HAMMASI MOS

@@ -1,41 +1,34 @@
-\documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,booktabs,hyperref}
-\hypersetup{pdfauthor={Otakhon U. Kenjaev},pdftitle={The two lost notes on page 54 of Ramanujan's lost notebook},pdfsubject={doi:10.5281/zenodo.23030496 (all versions)},pdfkeywords={Ramanujan, lost notebook, theta functions, cubic identities}}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{booktabs}%
+
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{lemma}[theorem]{Lemma}%
+\newtheorem{corollary}[theorem]{Corollary}%
+\theoremstyle{thmstyletwo}%
+\newtheorem{remark}{Remark}%
 \newcommand{\f}{f}
+\newcommand{\HH}{\mathcal{H}}
 
-\title{The two lost notes on page 54 of Ramanujan's lost notebook}
-\author{Otakhon U. Kenjaev}
-\date{September 29, 2026}
-
-% STATUS v2 2026-09-29: Teorema 3-4 (circular summation + Borwein a). verifier 12/12, sonli 14/14. Son 2004 faqat zbMATH taqrizi.
+\raggedbottom
 
 \begin{document}
-\begin{abstract}
-On page 54 of his lost notebook Ramanujan states two families of cubic theta-function
-identities and, in each family, writes ``see note'' next to one further claim
-($A^3-B^3$ in the first family, $A^3+B^3$ in the second). Both notes are lost:
-Andrews and Berndt record that they have not been preserved. We show that both
-missing identities are special cases of another claim written on the \emph{same
-page}, Ramanujan's cubic circular summation (Entry 8.2.3 in Andrews--Berndt), and
-that in terms of the Borweins' cubic theta function
-$a(q)=\sum_{m,n}q^{m^2+mn+n^2}$ they take the compact form
-\[
-A^3-B^3=q^2\f^3(-q^3,-q^{12})+\f(-q^2,-q^3)\,a(q^5),\qquad
-q\,(A^3+B^3)=\f^3(-q^6,-q^9)-\f(-q,-q^4)\,a(q^5).
-\]
-We also record an elementary second form obtained from Ramanujan's other
-identities on the page, and computational evidence that, unlike the four
-recorded cube identities, the two missing combinations have no one- or two-term
-theta-\emph{product} representation in a large explicit search space; the
-appearance of the binary theta series $a(q^5)$, which is not such a product,
-explains why these two claims were deferred to a note. All identities are
-certified to $2000$ coefficients by a single integer-arithmetic script and
-independently at 50-digit precision. (Version 2; version 1 contained only the
-elementary form.)
-\end{abstract}
+
+\title[The two lost notes on page 54]{The two lost notes on page 54 of Ramanujan's lost notebook}
+
+\author*[1]{\fnm{Otakhon U.} \sur{Kenjaev}}\email{kenjayevotaxon@gmail.com}
+
+\affil*[1]{\orgname{Independent researcher}, \orgaddress{\city{Khorezm}, \country{Uzbekistan}}}
+
+\abstract{On page 54 of his lost notebook Ramanujan states two families of cubic theta-function identities and, in each family, writes ``see note'' next to one further claim ($A^3-B^3$ in the first family, $A^3+B^3$ in the second). Both notes are lost: Andrews and Berndt record that they have not been preserved. We show that both missing identities are special cases of another claim written on the same page, Ramanujan's cubic circular summation (Entry 8.2.3 in Andrews--Berndt), and that in terms of the Borweins' cubic theta function $a(q)=\sum_{m,n}q^{m^2+mn+n^2}$ they take the compact form $A^3-B^3=q^2f^3(-q^3,-q^{12})+f(-q^2,-q^3)\,a(q^5)$ and $q(A^3+B^3)=f^3(-q^6,-q^9)-f(-q,-q^4)\,a(q^5)$. We then prove why a note was unavoidable: unlike the four cube identities Ramanujan recorded, the two deferred combinations vanish in the upper half-plane. The second one vanishes at a real point $q_0\in(-\tfrac{7}{10},-\tfrac12)$ (an intermediate-value argument with exact rational bounds), and the conjugation $u_2(\gamma\tau)\,u_1(\tau)=-1$ by $\gamma=\left(\begin{smallmatrix}7&6\\15&13\end{smallmatrix}\right)\in\Gamma_0(15)$, proved with Siegel functions, carries this zero to a zero of $A-B$ in the first family. Since a product of theta functions never vanishes, neither deferred combination---in contrast to every one-term identity on the page---is a theta product in any basis. A finite search shows that, within the basis of page 54, the only two-term product forms are the trivial rewritings $A^3\mp B^3=(A^3\pm B^3)\mp2B^3$ of the recorded one-term identities. All identities are certified to $2000$ coefficients by exact integer arithmetic and independently at 50-digit precision.}
+
+\keywords{Ramanujan's lost notebook, theta functions, cubic theta functions, circular summation, Borwein cubic theta function, Siegel functions}
+
+\pacs[MSC Classification]{11F27, 33E05, 11F20, 11F03, 05A30}
+
 \maketitle
 
 \section{Introduction}
@@ -71,21 +64,27 @@ did not write this note, or, if he did, it has been lost'' \cite[p.~178]{AB2}.
 
 To our knowledge the two missing notes have not been reconstructed in the
 literature. The cubic identities of page 54 were first proved by Son
-\cite{Son}, and Andrews and Berndt state that in this section they ``follow
-precisely Son's beautiful proofs'' \cite[p.~173]{AB2}; both ``see note''
+\cite{Son}, who already remarks that Ramanujan ``apparently did not write these
+notes'' \cite[\S4]{Son}; Andrews and Berndt state that in this section they ``follow
+precisely Son's beautiful proofs'' \cite[p.~173]{AB2}, and both ``see note''
 remarks, with the statements that the notes are lost, appear inside that very
-section, and the only further content of \cite{Son} mentioned there is ``some
-new modular equations'' \cite[p.~180]{AB2}. We were unable to find any later
-source addressing the notes.
+section. We were unable to find any later source addressing the notes.
 
-The main observation of this paper (Section~\ref{sec:circ}) is that the two
+This paper has two parts. The first (Section~\ref{sec:circ}) observes that the two
 missing identities are hidden two lines further down the same page: they are
 special cases of Ramanujan's cubic circular summation, Entry 8.2.3 of
 \cite{AB2}, whose right-hand side is the Borweins' cubic theta function
-$a(q)$. Section~\ref{sec:rekon} records a second, elementary form obtained from
-(8.2.7), (8.2.9), (8.2.11), (8.2.13). Section~\ref{sec:yoqlik} shows that no
-one- or two-term theta-product form exists within a large explicit search
-space, and Section~\ref{sec:verifier} describes the verification scripts.
+$a(q)$; Section~\ref{sec:rekon} records a second, elementary form obtained from
+(8.2.7), (8.2.9), (8.2.11), (8.2.13). The second part (Section~\ref{sec:nol})
+explains why Ramanujan could not record these two claims in the one-line product
+form of (8.2.8) and (8.2.12): we prove that $A^3+B^3$ of Entry 8.2.2 vanishes at a
+real point $q_0\in(-\frac{7}{10},-\frac12)$, that an explicit element of
+$\Gamma_0(15)$ conjugates the two families and carries this zero to a zero of
+$A-B$ in Entry 8.2.1, and that consequently neither deferred combination is a
+product of theta functions in any basis (Theorem~\ref{thm:nol} and
+Corollary~\ref{cor:nol}). Section~\ref{sec:yoqlik} adds a finite search showing
+that within the basis of page 54 the only two-term product forms are trivial rewritings of the recorded identities, and
+Section~\ref{sec:verifier} describes the verification scripts.
 
 \section{The notes as circular summations}\label{sec:circ}
 On page 54 Ramanujan also states the following, proved by Son \cite{Son04} and
@@ -98,9 +97,9 @@ With the Borweins' cubic theta functions \cite{BB91,BBG94}
 \[
 a(q)=\sum_{m,n=-\infty}^{\infty}q^{m^2+mn+n^2},\quad
 b(q)=\frac{\f^3(-q)}{\f(-q^3)},\quad
-c(q)=3q^{1/3}\frac{\f^3(-q^3)}{\f(-q)},\qquad a^3=b^3+c^3,
+c(q)=3q^{1/3}\frac{\f^3(-q^3)}{\f(-q)},
 \]
-the brace in \eqref{eq:circ} equals $(b^3(q)+c^3(q))^{1/3}=a(q)$.
+which satisfy $a^3=b^3+c^3$ \cite{BB91}, the brace in \eqref{eq:circ} equals $(b^3(q)+c^3(q))^{1/3}=a(q)$.
 
 \begin{theorem}\label{thm:3}
 Let $A=\f(-q^7,-q^8)$ and $B=q\f(-q^2,-q^{13})$ (Entry 8.2.1). Then
@@ -123,10 +122,12 @@ A^3+B^3=\frac1q\left\{\f^3(-q^6,-q^9)-\f(-q,-q^4)\,a(q^5)\right\}.
 \end{theorem}
 \begin{proof}
 Take $a=-q^6$, $b=-q^{-1}$ in \eqref{eq:circ}, so again $ab=q^5$. Then
-$\f(ab^2,a^2b)=\f(-q^4,-q^{11})=A$. Using $\f(a,b)=a\,\f(a^{-1},a^2b)$
-\cite[p.~34]{BerndtIII}, $\f(-q^{-1},-q^{16})=-q^{-1}\f(-q,-q^{14})$ and
-$\f(-q^{-1},-q^6)=-q^{-1}\f(-q,-q^4)$; hence
-$a\f^3(b,a^3b^2)=-q^6\f^3(-q^{-1},-q^{16})=q^3\f^3(-q,-q^{14})=B^3$,
+$\f(ab^2,a^2b)=\f(-q^4,-q^{11})=A$. By $\f(a,b)=a\,\f(a^{-1},a^2b)$
+\cite[p.~34]{BerndtIII},
+\[
+\f(-q^{-1},-q^{16})=-q^{-1}\f(-q,-q^{14}),\qquad \f(-q^{-1},-q^6)=-q^{-1}\f(-q,-q^4);
+\]
+hence $a\f^3(b,a^3b^2)=-q^6\f^3(-q^{-1},-q^{16})=q^3\f^3(-q,-q^{14})=B^3$,
 $b\f^3(a,a^2b^3)=-q^{-1}\f^3(-q^6,-q^9)$ and $\f(a,b)=-q^{-1}\f(-q,-q^4)$.
 \end{proof}
 
@@ -136,23 +137,24 @@ further term --- except that the second term contains the binary theta series
 $a(q^5)$ rather than a theta product. Since \eqref{eq:circ} is printed on the same
 page, immediately after the two ``see note'' remarks, it is natural to read
 Theorems~\ref{thm:3}--\ref{thm:4} as the content of the lost notes; this reading
-is an interpretation, and we label it as such.
+is an interpretation, and we label it as such. Section~\ref{sec:nol} shows that
+some non-product factor is in fact unavoidable.
 
 \emph{Literature.} We found no statement of Theorems~\ref{thm:3}--\ref{thm:4}, nor
-any link between Entry 8.2.3 and the two ``see note'' remarks, in \cite{AB2}, in
+any link between Entry 8.2.3 and the two ``see note'' remarks, in \cite{Son}, in \cite{AB2}, in
 the chapter on circular summation of \cite{AB3}, in \cite{AB4}, in
-Chan--Liu--Ng \cite{CLN06} (full text), or in Ge--Luo \cite{GL19}. Son's paper
-\cite{Son04} was checked only through its zbMATH review (Zbl~1062.11023), which
-lists the general theorem and the cases $F_n$, $n=2,3,4,5,7$.
+Chan--Liu--Ng \cite{CLN06}, or in Ge--Luo \cite{GL19}. Son's paper
+\cite{Son04} was checked through its zbMATH review (Zbl~1062.11023), which
+lists the general theorem and the cases $F_n$, $n=2,3,4,5,7$, and through the account of its proof in \cite[Chapter~9]{AB3}.
 
 \section{An elementary second form}\label{sec:rekon}
 
 \begin{theorem}\label{thm:1}
 Let $A=\f(-q^7,-q^8)$ and $B=q\f(-q^2,-q^{13})$, as in Entry 8.2.1. Then
-\begin{equation}\label{eq:T1}
-A^3-B^3=\frac{\f(-q^2,-q^3)\,\f^3(-q,-q^4)}{\f(-q^3,-q^{12})}+q^2\,\f^3(-q^3,-q^{12})
+\begin{multline}\label{eq:T1}
+A^3-B^3=\frac{\f(-q^2,-q^3)\,\f^3(-q,-q^4)}{\f(-q^3,-q^{12})}+q^2\,\f^3(-q^3,-q^{12})\\
 +3AB\left\{\f(-q^{2/3},-q)+q^{2/3}\f(-q^3,-q^{12})\right\},
-\end{equation}
+\end{multline}
 where, by the Jacobi triple product,
 \[
 AB=q\,\f(-q^7,-q^8)\,\f(-q^2,-q^{13})
@@ -169,10 +171,10 @@ Jacobi triple product $\f(a,b)=(-a;ab)_\infty(-b;ab)_\infty(ab;ab)_\infty$.
 
 \begin{theorem}\label{thm:2}
 Let $A=\f(-q^4,-q^{11})$ and $B=q\f(-q,-q^{14})$, as in Entry 8.2.2. Then
-\begin{equation}\label{eq:T2}
-A^3+B^3=-\frac1q\left\{\frac{\f(-q,-q^4)\,\f^3(-q^2,-q^3)}{\f(-q^6,-q^9)}-\f^3(-q^6,-q^9)\right\}
+\begin{multline}\label{eq:T2}
+A^3+B^3=-\frac1q\left\{\frac{\f(-q,-q^4)\,\f^3(-q^2,-q^3)}{\f(-q^6,-q^9)}-\f^3(-q^6,-q^9)\right\}\\
 +\frac{3AB}{q^{1/3}}\left\{\f(-q^{1/3},-q^{4/3})-\f(-q^6,-q^9)\right\},
-\end{equation}
+\end{multline}
 where
 \[
 AB=q\,\f(-q^4,-q^{11})\,\f(-q,-q^{14})
@@ -193,27 +195,141 @@ Comparing \eqref{eq:T1} with \eqref{eq:T3} gives, as a by-product,
 $3AB(A-B)=\f(-q^2,-q^3)\{a(q^5)-\f^3(-q,-q^4)/\f(-q^3,-q^{12})\}$ for the pair of
 Entry 8.2.1, and in the same way $3AB(A+B)=q^{-1}\f(-q,-q^4)\{a(q^5)-\f^3(-q^2,-q^3)/\f(-q^6,-q^9)\}$ for the pair of Entry 8.2.2.
 
-\section{Why a note was necessary: a nonexistence computation}\label{sec:yoqlik}
+\section{Why a note was necessary: the deferred combinations vanish}\label{sec:nol}
 
-Each of the four cube identities Ramanujan recorded on page 54 is a one- or
-two-term combination of monomials in theta functions. It is natural to ask
-whether $A^3-B^3$ (Entry 8.2.1) and $A^3+B^3$ (Entry 8.2.2) also possess such a
-form, which Ramanujan would simply have recorded in the note. The evidence is
-that they do not.
+Throughout, $\HH$ is the upper half-plane, $q=e^{2\pi i\tau}$, $\tau\in\HH$, and
+$q^{r}:=e^{2\pi i r\tau}$ for rational $r$. To separate the two families we write
+$A_1=\f(-q^7,-q^8)$, $B_1=q\f(-q^2,-q^{13})$ (Entry 8.2.1) and
+$A_2=\f(-q^4,-q^{11})$, $B_2=q\f(-q,-q^{14})$ (Entry 8.2.2), and we put
+\begin{equation}\label{eq:u}
+u_1:=\frac{B_1}{A_1}=q\,\frac{(q^2,q^{13};q^{15})_\infty}{(q^7,q^8;q^{15})_\infty},\qquad
+u_2:=\frac{B_2}{A_2}=q\,\frac{(q,q^{14};q^{15})_\infty}{(q^4,q^{11};q^{15})_\infty},
+\end{equation}
+the common factor $(q^{15};q^{15})_\infty$ having cancelled by the Jacobi triple product.
+By a \emph{theta product} we mean a function
+\begin{equation}\label{eq:prod}
+P(\tau)=c\,q^{s}\prod_{i=1}^{m}\f(\pm q^{a_i},\pm q^{b_i})^{k_i},\qquad
+c\in\mathbb{C}^\times,\ s\in\mathbb{Q},\ a_i,b_i\in\mathbb{Q}_{>0},\ k_i\in\mathbb{Z},
+\end{equation}
+with any choice of signs; every one-term identity on page 54 --- (8.2.6), (8.2.8), (8.2.10), (8.2.12), and the products of Theorems~\ref{thm:1}--\ref{thm:2} --- has this form.
+
+\begin{lemma}\label{lem:nonvan}
+A theta product \eqref{eq:prod} has no zeros in $\HH$. Moreover, for real
+$q\in(-1,0)\cup(0,1)$, with real roots $q^{r}$, it is nonzero, and real when $c$ is real.
+\end{lemma}
+\begin{proof}
+By the Jacobi triple product, $\f(\pm q^{a},\pm q^{b})=(\mp q^{a};q^{a+b})_\infty(\mp q^{b};q^{a+b})_\infty(q^{a+b};q^{a+b})_\infty$ is an absolutely convergent product of factors $1\mp q^{r}$ with $r>0$ rational, each of modulus in $(0,2)$ since $|q^{r}|<1$. For real $q$ and real roots each factor lies in $(0,2)$, and $q^{s}$ is real.
+\end{proof}
+
+\subsection{The two families are conjugate in $\Gamma_0(15)$}
+We use the Siegel functions of Kubert and Lang \cite[Chapter~2]{KL}: for $\mathbf a=(a_1,a_2)\in\mathbb{Q}^2$, $z=a_1\tau+a_2$, $q_z=e^{2\pi iz}$ and $B_2(x)=x^2-x+\frac16$,
+\begin{equation}\label{eq:siegel}
+g_{\mathbf a}(\tau)=-q^{B_2(a_1)/2}\,e^{\pi i a_2(a_1-1)}\,(1-q_z)\prod_{n\ge1}(1-q^nq_z)(1-q^nq_z^{-1}).
+\end{equation}
+They satisfy, for $\gamma\in SL_2(\mathbb{Z})$ and $\mathbf b\in\mathbb{Z}^2$ \cite[Chapter~2, (K1), (K2)]{KL},
+\begin{equation}\label{eq:K}
+g_{\mathbf a}(\gamma\tau)=\varepsilon(\gamma)\,g_{\mathbf a\gamma}(\tau),\qquad
+g_{\mathbf a+\mathbf b}(\tau)=\varepsilon(\mathbf a,\mathbf b)\,g_{\mathbf a}(\tau),\qquad
+g_{-\mathbf a}=-g_{\mathbf a},
+\end{equation}
+where $\varepsilon(\gamma)$ is a twelfth root of unity independent of $\mathbf a$ (it comes from $\eta^2$), $\mathbf a\gamma$ is the row-vector action, and
+$\varepsilon(\mathbf a,\mathbf b)=(-1)^{b_1b_2+b_1+b_2}e^{-\pi i(b_1a_2-b_2a_1)}$.
+In particular a quotient $g_{\mathbf a}/g_{\mathbf b}$ transforms under $SL_2(\mathbb{Z})$ without any root of unity.
+
+\begin{lemma}\label{lem:siegel}
+With $g_r:=g_{(r/15,\,0)}(15\tau)$,
+\[
+u_1(\tau)=\frac{g_2}{g_7},\qquad u_2(\tau)=\frac{g_1}{g_4}.
+\]
+\end{lemma}
+\begin{proof}
+For $\mathbf a=(r/15,0)$ and the variable $15\tau$ we have $q_z=q^{r}$, so by \eqref{eq:siegel}
+\[
+g_r=-q^{\,e(r)}\,(q^{r};q^{15})_\infty(q^{15-r};q^{15})_\infty,\qquad
+e(r)=\tfrac{15}{2}B_2(\tfrac{r}{15})=\tfrac{r^2}{30}-\tfrac r2+\tfrac54,
+\]
+and $e(2)=\frac{23}{60}$, $e(7)=-\frac{37}{60}$, $e(1)=\frac{47}{60}$, $e(4)=-\frac{13}{60}$. Hence
+\[
+\frac{g_2}{g_7}=q^{\,23/60+37/60}\,\frac{(q^2,q^{13};q^{15})_\infty}{(q^7,q^8;q^{15})_\infty}=u_1,\qquad
+\frac{g_1}{g_4}=q^{\,47/60+13/60}\,\frac{(q,q^{14};q^{15})_\infty}{(q^4,q^{11};q^{15})_\infty}=u_2
+\]
+by \eqref{eq:u}.
+\end{proof}
+
+\begin{lemma}[conjugation]\label{lem:conj}
+Let $\gamma=\left(\begin{smallmatrix}7&6\\15&13\end{smallmatrix}\right)\in\Gamma_0(15)$. Then for all $\tau\in\HH$
+\begin{equation}\label{eq:conj}
+u_2(\gamma\tau)\,u_1(\tau)=-1 .
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $\tau'=15\tau$; then $15\,\gamma\tau=\gamma'\tau'$ with $\gamma'=\left(\begin{smallmatrix}7&90\\1&13\end{smallmatrix}\right)\in SL_2(\mathbb{Z})$. By Lemma~\ref{lem:siegel} and the first relation in \eqref{eq:K},
+\[
+u_2(\gamma\tau)=\frac{g_{(1/15,0)}(\gamma'\tau')}{g_{(4/15,0)}(\gamma'\tau')}
+=\frac{g_{(7/15,\,6)}(\tau')}{g_{(28/15,\,24)}(\tau')}.
+\]
+Now reduce the indices modulo $\mathbb{Z}^2$ with the second relation in \eqref{eq:K}: $(7/15,6)=(7/15,0)+(0,6)$ gives the factor $\varepsilon=(-1)^{6}e^{\pi i\cdot 6\cdot 7/15}=e^{4\pi i/5}$, and $(28/15,24)=(-2/15,0)+(2,24)$ gives $\varepsilon=(-1)^{74}e^{-\pi i\cdot 24\cdot 2/15}=e^{-16\pi i/5}=e^{-6\pi i/5}$. Using $g_{(-2/15,0)}=-g_{(2/15,0)}$,
+\[
+u_2(\gamma\tau)=\frac{e^{4\pi i/5}\,g_7}{-e^{-6\pi i/5}\,g_2}=-e^{2\pi i}\,\frac{g_7}{g_2}=-\frac{1}{u_1(\tau)}.
+\]
+(The identity was also checked numerically at six points with $40$-digit arithmetic, to within $4\cdot10^{-38}$; Section~\ref{sec:verifier}.)
+\end{proof}
+
+\subsection{The zeros}
+
+\begin{theorem}\label{thm:nol}
+\begin{enumerate}
+\item[(i)] There is a real number $q_0\in(-\frac{7}{10},-\frac12)$ with $B_2(q_0)=-A_2(q_0)$; numerically $q_0=-0.570655687750373\ldots$. Hence $A_2+B_2$, $(A_2+B_2)^3$ and the deferred combination $A_2^3+B_2^3$ of Entry 8.2.2 all vanish at $q_0$, i.e.\ at $\tau_0=\frac12+iy_0\in\HH$, $y_0=-\frac{1}{2\pi}\log|q_0|=0.089281029042\ldots$.
+\item[(ii)] Let $\tau_1=\gamma^{-1}\tau_0=\dfrac{13\tau_0-6}{-15\tau_0+7}$, with $\gamma$ as in Lemma~\ref{lem:conj}. Then $A_1(\tau_1)=B_1(\tau_1)$. Hence $A_1-B_1$, $(A_1-B_1)^3$ and the deferred combination $A_1^3-B_1^3$ of Entry 8.2.1 all vanish at $\tau_1$; numerically $\tau_1\equiv 0.117021434026+0.043690294673\,i \pmod 1$, i.e.\ $q=0.563611486667+0.509757510046\,i$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) For real $q\in(-1,0)$ the function $u_2$ of \eqref{eq:u} is a convergent product of positive factors times $q$, hence continuous and real. Write $u_2(q)=P_K(q)\prod_{k>K}r_k(q)$ with
+$r_k=(1-q^{15k+1})(1-q^{15k+14})/\bigl((1-q^{15k+4})(1-q^{15k+11})\bigr)$ and $P_K=q\prod_{k\le K}r_k$ an exact rational number for rational $q$. For $|q|^{15(K+1)+1}\le\frac12$ and $k>K$ one has $|\log r_k|\le 8|q|^{15k+1}$ (each of the four factors $1-q^{m}$, $m\ge 15k+1$, satisfies $|\log(1-q^m)|\le 2|q|^{m}$ because $|q|^m\le\frac12$), so $\bigl|\log\prod_{k>K}r_k\bigr|\le S:=8|q|^{15(K+1)+1}/(1-|q|^{15})$. Exact rational arithmetic gives
+\begin{align*}
+P_4(-\tfrac12)&=-0.79954704982494\ldots,&S&<1.1\cdot10^{-22},\\
+P_6(-\tfrac{7}{10})&=-1.51863908249240\ldots,&S&<3.1\cdot10^{-16},
+\end{align*}
+so $u_2(-\frac12)>-1>u_2(-\frac7{10})$ (the script of Section~\ref{sec:verifier} prints the rigorous enclosures). By the intermediate value theorem there is $q_0\in(-\frac7{10},-\frac12)$ with $u_2(q_0)=-1$, i.e.\ $B_2(q_0)=-A_2(q_0)$, where $A_2(q_0)\ne0$ by Lemma~\ref{lem:nonvan}; then $A_2^3+B_2^3=A_2^3(1+u_2^3)=0$.
+
+(ii) By \eqref{eq:conj} with $\tau=\tau_1$, $u_1(\tau_1)=-1/u_2(\gamma\tau_1)=-1/u_2(\tau_0)=1$, i.e.\ $A_1(\tau_1)=B_1(\tau_1)$, and $A_1(\tau_1)\ne0$ by Lemma~\ref{lem:nonvan}.
+\end{proof}
+
+\begin{corollary}\label{cor:nol}
+None of $A_1^3-B_1^3$, $A_1-B_1$, $(A_1-B_1)^3$ (Entry 8.2.1) and $A_2^3+B_2^3$, $A_2+B_2$, $(A_2+B_2)^3$ (Entry 8.2.2) is a theta product \eqref{eq:prod}, for any choice of $c,s,m,a_i,b_i,k_i$ and signs. In particular neither deferred combination has a one-term identity in any basis.
+\end{corollary}
+\begin{proof}
+Each of the six functions vanishes at $\tau_0$ or $\tau_1$ (Theorem~\ref{thm:nol}), whereas a theta product does not vanish anywhere in $\HH$ (Lemma~\ref{lem:nonvan}); two holomorphic functions on $\HH$ that agree on a neighbourhood of $0$ in the $q$-plane agree on $\HH$.
+\end{proof}
+
+\begin{remark}[the dichotomy of page 54]
+In each family Ramanujan wrote as one-term products exactly the combinations that do not vanish --- $A_1+B_1$ (8.2.6), $A_1^3+B_1^3$ (8.2.8), $A_2-B_2$ (8.2.10), $A_2^3-B_2^3$ (8.2.12) --- and wrote the vanishing combinations $A_1-B_1$, $(A_1-B_1)^3$, $A_2+B_2$, $(A_2+B_2)^3$ as sums of two terms, (8.2.7), (8.2.9), (8.2.11), (8.2.13). Corollary~\ref{cor:nol} shows that this is not a matter of taste: the second group cannot be written with one term. The two deferred combinations belong to the second group, and Theorems~\ref{thm:3}--\ref{thm:4} give their two-term form; what distinguishes them from (8.2.9) and (8.2.13) is that the second term is not a product but $\f\cdot a(q^5)$, and Section~\ref{sec:yoqlik} shows that within the basis of page 54 the only two-term product forms are the trivial ones, $A^3\mp B^3=(A^3\pm B^3)\mp2B^3$, obtained from the recorded identities (8.2.8) and (8.2.12). The deferral to a note is therefore explained to the extent that a finite search can explain it; a proof that no non-trivial two-term product form exists in general is left open.
+\end{remark}
+
+\begin{remark}
+The ratios $u_1,u_2$ are modular units of level $15$. A computation like that of Lemma~\ref{lem:conj} (which we have carried out numerically, to $30$ digits) shows how $\Gamma_0(15)$ acts on them according to the residue of the upper-left entry modulo $15$: for $\pm1$ both are invariant, e.g.\ under $\left(\begin{smallmatrix}1&1\\15&16\end{smallmatrix}\right)$; for $\pm4$ each is inverted, e.g.\ $u_1(\gamma\tau)=1/u_1(\tau)$ for $\gamma=\left(\begin{smallmatrix}4&1\\15&4\end{smallmatrix}\right)$; for $\pm2$ and $\pm7$ the two are interchanged up to sign or inversion, e.g.\ $u_2(\gamma\tau)=-u_1(\tau)$ for $\gamma=\left(\begin{smallmatrix}2&1\\15&8\end{smallmatrix}\right)$ and $u_2(\gamma\tau)=-1/u_1(\tau)$ for the $\gamma$ of Lemma~\ref{lem:conj}. The mirror symmetry
+$\f(-q^3,-q^{12})\leftrightarrow\f(-q^6,-q^9)$, $\f(-q,-q^4)\leftrightarrow\f(-q^2,-q^3)$ between the two entries, under which (8.2.8) corresponds to (8.2.12) and (8.2.9) to (8.2.13), is the shadow of this conjugation; in particular the two deferrals are two instances of one phenomenon, and both lost notes are the same circular summation \eqref{eq:circ} with the same modulus $ab=q^5$.
+\end{remark}
+
+\section{A finite search for two-term product forms}\label{sec:yoqlik}
+
+Corollary~\ref{cor:nol} rules out one-term forms completely. For two-term forms, which the recorded identities (8.2.9) and (8.2.13) do possess, we report a finite search.
 
 \subsection{Non-periodicity of the quadratic cofactors}
 Write $A^3+B^3=(A+B)(A^2-AB+B^2)$ and $A^3-B^3=(A-B)(A^2+AB+B^2)$. A power
 series with integer coefficients and constant term $1$ has a unique
 representation $\prod_{n\ge1}(1-q^n)^{-c_n}$. If $(c_n)$ is periodic with
 period $M$, the series equals $\prod_{a=1}^{M}(q^a;q^M)_\infty^{-c_a}$, a
-generalized eta-quotient, i.e.\ a finite product of theta functions of the kind
-occurring throughout page 54 (Jacobi triple product); conversely every such
-product has periodic $(c_n)$. Computing $(c_n)$ for $n\le 380$
+generalized eta-quotient; when $c_a=c_{M-a}$ for $1\le a<M$ it is a theta product in the sense of
+\eqref{eq:prod}, since $(q^a;q^M)_\infty(q^{M-a};q^M)_\infty=\f(-q^a,-q^{M-a})/(q^M;q^M)_\infty$.
+Conversely, a theta product \eqref{eq:prod} with integer $a_i,b_i$ and $c=1$, $s=0$ is, by the Jacobi
+triple product and $1+x=(1-x^2)/(1-x)$, a finite product of factors $(q^a;q^M)_\infty^{\pm1}$, so its
+$(c_n)$ is periodic. Computing $(c_n)$ for $n\le 380$
 by the logarithmic-derivative recursion we find, in each entry, a sharp split:
 \begin{center}
 \begin{tabular}{lll}
 \toprule
-Entry & combination & exponent sequence $(c_n)$\\
+Entry & combination & $(c_n)$\\
 \midrule
 8.2.1 & $A^2-AB+B^2$ \ (factor of the recorded (8.2.8)) & periodic mod $15$\\
 8.2.1 & $A^2+AB+B^2$ \ (factor of the lost $A^3-B^3$) & not periodic\\
@@ -222,11 +338,8 @@ Entry & combination & exponent sequence $(c_n)$\\
 \bottomrule
 \end{tabular}
 \end{center}
-(``Not periodic'' means: no period $\le 60$ holds for $n\le 380$; the periodic cases were checked from $n=1$.) Thus in each
-family the recorded cube identity is the one whose quadratic cofactor is a
-generalized eta-quotient, and the deferred one is the one whose cofactor is not. This
-already rules out any identity of the shape
-$A^3\mp B^3=(\text{linear factor known on p.~54})\times(\text{generalized eta-quotient})$.
+(``Not periodic'' means: no period $\le 60$ holds for $n\le 380$; the periodic cases were checked from $n=1$.) The non-periodic cofactors are $A_1^2(1+u_1+u_1^2)$ and $A_2^2(1-u_2+u_2^2)$, which vanish where $u_1\in\{\omega,\omega^2\}$, resp.\ $u_2\in\{-\omega,-\omega^2\}$, $\omega=e^{2\pi i/3}$; numerically such points exist (e.g.\ $u_1(\tau)=\omega$ at $\tau\approx0.29434+0.06065\,i$), which is consistent with the table, but we have not proved it, and the table rules out any identity of the shape
+$A^3\mp B^3=(\text{linear factor known on p.~54})\times(\text{theta product})$ only within the computed range.
 
 \subsection{Systematic search over theta-monomial bases}
 We searched for representations
@@ -254,33 +367,13 @@ returns the two-term representation (8.2.9), and in the $q^{1/3}$-lattice it
 returns (8.2.7) for $A-B$.
 
 \emph{Result.} For $A^3-B^3$ (Entry 8.2.1) and $A^3+B^3$ (Entry 8.2.2) the
-search returns nothing beyond trivial rewritings of the definitions. This is
+search in the integer basis returns exactly three representations each, all trivial: the definition itself, $f^3(-q^7,-q^8)-q^3f^3(-q^2,-q^{13})$, resp.\ $f^3(-q^4,-q^{11})+q^3f^3(-q,-q^{14})$, and, once the coefficients $\pm2$ are admitted, the two rewritings $A^3\mp B^3=(A^3\pm B^3)\mp2B^3=2A^3-(A^3\pm B^3)$ of the recorded one-term identities (8.2.8) and (8.2.12); each candidate was confirmed on all $260$ coefficients. In the $q^{1/3}$-lattice (trivial forms excluded) and with the three-term shape the search returns nothing. This is
 consistent with Theorems~\ref{thm:3}--\ref{thm:4}: the missing identities need
-the binary theta series $a(q^5)$, which lies outside the product basis. Within the
-declared space --- which contains every identity actually appearing on page 54
---- the two lost combinations have no one- or two-term product form.
+the binary theta series $a(q^5)$, which lies outside the product basis. We state the scope honestly: this is a finite search over an explicit basis and
+coefficient range; the one-term case is settled by Corollary~\ref{cor:nol}, the non-trivial two-term case in general is not.
 
-We state the scope honestly: this is a finite search over an explicit basis and
-coefficient range, not a proof of nonexistence in general; a completeness
-argument via the theory of modular functions on $\Gamma_0(15)$ (the natural
-next step) is left open.
-
-\section{The mirror symmetry, and a remark on the note}\label{sec:mirror}
-The two entries are mirror images: under the exchange
-$\f(-q^3,-q^{12})\leftrightarrow\f(-q^6,-q^9)$,
-$\f(-q,-q^4)\leftrightarrow\f(-q^2,-q^3)$, identity (8.2.8) corresponds to
-(8.2.12) and (8.2.9) to (8.2.13). In each family Ramanujan recorded the cube
-combination with the generalized eta-quotient cofactor and deferred the other to a note.
-The parallel structure of the two deferrals --- the \emph{same} obstruction on
-both sides of the mirror --- is explained by Theorems~\ref{thm:3}--\ref{thm:4}:
-both notes are the same circular summation \eqref{eq:circ}, with the same
-modulus $ab=q^5$ and the same factor $a(q^5)$, applied to the two mirror pairs. Whether
-Ramanujan intended precisely this, or a representation of a shape we have not
-searched, cannot of course be decided; we label this paragraph as
-interpretation, not theorem.
-
-\section{The verification script}\label{sec:verifier}
-All twelve identities of this paper --- (8.2.6)--(8.2.13),
+\section{The verification scripts}\label{sec:verifier}
+All twelve identities of Sections~\ref{sec:circ}--\ref{sec:rekon} --- (8.2.6)--(8.2.13),
 \eqref{eq:T1}--\eqref{eq:T2} and \eqref{eq:T3}--\eqref{eq:T4} --- are certified by one self-contained Python
 script \texttt{verifier.py} ($152$ lines, no dependencies). It works in
 the variable $y=q^{1/3}$ with exact integer arithmetic; every identity
@@ -289,11 +382,32 @@ power series occurs. Each identity is checked to $400$ coefficients of $q$ by
 default, and the run reported here used $2000$ coefficients ($6003$ powers of
 $y$; total runtime about one second). The script prints one MOS/FARQ
 (match/mismatch) line per identity and exits nonzero on any mismatch; the
-archived run prints $12/12$ MOS. A second, independent script \texttt{sonli\_tekshir.py} evaluates all identities as printed (with division and $q^{1/3}$) at five values of $q$ with 50-digit arithmetic; the largest relative discrepancy is $2\cdot10^{-49}$. A third script \texttt{ildiz.py} checks the foundations independently: it compares every theta series used with its Jacobi triple product (3000 coefficients), verifies the circular summation \eqref{eq:circ} itself as an identity of two-variable integer power series in independent variables $a,b$ (all monomials $a^ib^j$ with $i+j\le150$, where the brace is replaced by $a(ab)$), and checks $a^3=b^3+c^3$ in the division-free form $a(q)^3(q;q)_\infty^3(q^3;q^3)_\infty^3=(q;q)_\infty^{12}+27q(q^3;q^3)_\infty^{12}$ (3000 coefficients). Finally, \texttt{ildiz\_gp.gp} re-implements the theta series, Theorems~\ref{thm:3}--\ref{thm:4}, both by-products and the Borwein identity from scratch in PARI/GP (1500 coefficients), independently of the Python code.
+archived run prints $12/12$ MOS. A second, independent script \texttt{sonli\_tekshir.py} evaluates all identities as printed (with division and $q^{1/3}$) at five values of $q$ with 50-digit arithmetic; the largest relative discrepancy is $2\cdot10^{-49}$. A third script \texttt{ildiz.py} checks the foundations independently: it compares every theta series used with its Jacobi triple product (3000 coefficients), verifies the circular summation \eqref{eq:circ} itself as an identity of two-variable integer power series in independent variables $a,b$ (all monomials $a^ib^j$ with $i+j\le150$, where the brace is replaced by $a(ab)$), and checks $a^3=b^3+c^3$ in the division-free form $a(q)^3(q;q)_\infty^3(q^3;q^3)_\infty^3=(q;q)_\infty^{12}+27q(q^3;q^3)_\infty^{12}$ (3000 coefficients). \texttt{ildiz\_gp.gp} re-implements the theta series, Theorems~\ref{thm:3}--\ref{thm:4}, both by-products and the Borwein identity from scratch in PARI/GP (1500 coefficients), independently of the Python code.
 
-\section*{Data availability}
-The verification script and the search scripts of Section~\ref{sec:yoqlik} are
-archived at Zenodo: \url{https://doi.org/10.5281/zenodo.23030496} (all versions; version~1 is doi:10.5281/zenodo.23030497).
+The script \texttt{nol\_sertifikat.py} accompanies Section~\ref{sec:nol}. Its Part~A is the proof of Theorem~\ref{thm:nol}(i): it computes $P_4(-\frac12)$ and $P_6(-\frac7{10})$ as exact rational numbers (denominators of $97$ and $623$ digits), bounds the tails by the inequality stated in the proof, and prints rigorous enclosures of $u_2(-\frac12)$ and $u_2(-\frac7{10})$ on the two sides of $-1$. Its Part~B is a check, at $40$ digits, of Lemma~\ref{lem:conj} at six points, of the location of $\tau_0$ and $\tau_1$, of $|A_1(\tau_1)-B_1(\tau_1)|<10^{-30}$, and of the non-vanishing of the recorded products (8.2.6), (8.2.8), (8.2.10), (8.2.12) at the same points.
+
+\emph{Use of AI tools.} In accordance with the journal's policy on large language models, we state that generative AI (Claude, Anthropic) was used to write and run the verification and search programs described in this section and in Sections~\ref{sec:nol}--\ref{sec:yoqlik}, to carry out the numerical exploration that located the zeros of Section~\ref{sec:nol}, and to help prepare the text. The author directed the work, checked every statement against the cited sources and the program output, and takes full responsibility for the content of the paper.
+
+
+\backmatter
+
+\section*{Declarations}
+
+\bmhead{Funding} No funding was received for conducting this study.
+
+\bmhead{Competing interests} The author has no competing interests to declare that are relevant to the content of this article.
+
+\bmhead{Ethics approval and consent to participate} Not applicable.
+
+\bmhead{Consent for publication} Not applicable.
+
+\bmhead{Data availability} No data were generated beyond the program outputs described in Section~\ref{sec:verifier}.
+
+\bmhead{Materials availability} Not applicable.
+
+\bmhead{Code availability} The verification scripts and the search scripts of Section~\ref{sec:yoqlik} are archived at Zenodo: \url{https://doi.org/10.5281/zenodo.23030496}.
+
+\bmhead{Author contribution} The author is the sole author of this work.
 
 \begin{thebibliography}{9}
 \bibitem{LN} S.~Ramanujan, \emph{The Lost Notebook and Other Unpublished Papers}, Narosa, New Delhi, 1988.
@@ -306,6 +420,8 @@ archived at Zenodo: \url{https://doi.org/10.5281/zenodo.23030496} (all versions;
 \bibitem{BBG94} J.~M.~Borwein, P.~B.~Borwein and F.~G.~Garvan, \emph{Some cubic modular identities of Ramanujan}, Trans. Amer. Math. Soc. \textbf{343} (1994), 35--47, doi:10.1090/S0002-9947-1994-1243610-6.
 \bibitem{CLN06} H.~H.~Chan, Z.-G.~Liu and S.~T.~Ng, \emph{Circular summation of theta functions in Ramanujan's lost notebook}, J. Math. Anal. Appl. \textbf{316} (2006), 628--641, doi:10.1016/j.jmaa.2005.05.015.
 \bibitem{GL19} J.-K.~Ge and Q.-M.~Luo, \emph{Some extensions for Ramanujan's circular summation formula}, arXiv:1901.09820 (2019).
+\bibitem{KL} D.~S.~Kubert and S.~Lang, \emph{Modular Units}, Grundlehren der mathematischen Wissenschaften \textbf{244}, Springer, New York, 1981.
 \bibitem{Son} S.~H.~Son, \emph{Cubic identities of theta functions}, Ramanujan J. \textbf{2} (1998), 303--316, doi:10.1023/A:1009751614537.
 \end{thebibliography}
+
 \end{document}

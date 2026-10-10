@@ -1,0 +1,5 @@
+monomial: 2344 hash: 52464
+== NISHON-1 (7,8) A^3-B^3, 3-hadli (nazariy AB-had bilan):
+  N1: topilmadi
+== NISHON-2 (4,11) A^3+B^3:
+  N2: topilmadi

@@ -1,6 +1,7 @@
 # Kengaytirilgan baza + 2-hadli, keyin 3-hadli qidiruv (80-koef hash fazosida, so'ng to'liq tasdiqlash)
 import itertools
 N = 260; K = 80
+MON = {}  # nomi -> to'liq N-koeffitsientli qator (tasdiq uchun)
 def theta(c4, c11):
     s = [0]*(N+1); n = 0
     while True:
@@ -47,7 +48,7 @@ for tanl in itertools.combinations(range(len(BAZA)), 3):
         s = [0]*(N+1); s[0] = 1
         for idx, e in zip(tanl, eks): s = kop(s, darja(BAZA[idx][1], e))
         nomi = "*".join(f"{BAZA[i][0]}^{e}" if e!=1 else BAZA[i][0] for i,e in zip(tanl,eks))
-        monlar.append((nomi, s[:K]))
+        monlar.append((nomi, s[:K])); MON[nomi] = s
 # 1 va 2 funksiyali monomiallar ham
 for tanl in list(itertools.combinations(range(len(BAZA)),1))+list(itertools.combinations(range(len(BAZA)),2)):
     for eks in itertools.product(range(-1,4), repeat=len(tanl)):
@@ -55,13 +56,14 @@ for tanl in list(itertools.combinations(range(len(BAZA)),1))+list(itertools.comb
         s = [0]*(N+1); s[0] = 1
         for idx, e in zip(tanl, eks): s = kop(s, darja(BAZA[idx][1], e))
         nomi = "*".join(f"{BAZA[i][0]}^{e}" if e!=1 else BAZA[i][0] for i,e in zip(tanl,eks))
-        monlar.append((nomi, s[:K]))
+        monlar.append((nomi, s[:K])); MON[nomi] = s
 print("monomiallar:", len(monlar))
 
+print("koeffitsientlar: c in {±1,±2,±3}; siljish 0..3; hash K =", K, "; tasdiq N =", N)
 H = {}
 for nomi, s in monlar:
     for b in range(0, 4):
-        for c in (1,-1):
+        for c in (1,-1,2,-2,3,-3):
             key = tuple(c*s[i-b] if i>=b else 0 for i in range(K))
             H.setdefault(key, (c,b,nomi))
 
@@ -69,11 +71,13 @@ def qidir2(T, nomT):
     Tk = T[:K]; top = []
     for nomi, s in monlar:
         for a in range(0, 4):
-            for c in (1,-1):
+            for c in (1,-1,2,-2,3,-3):
                 key = tuple(Tk[i] - c*(s[i-a] if i>=a else 0) for i in range(K))
                 if key in H:
                     c2,b2,n2 = H[key]
-                    yech = tuple(sorted([f"{c:+d}*q^{a}*{nomi}", f"{c2:+d}*q^{b2}*{n2}"]))
+                    # to'liq tasdiq: barcha N koeffitsientda (hash faqat K=80 ni ko'radi)
+                    s1 = MON[nomi]; s2 = MON[n2]; tas = all(T[i] == c*(s1[i-a] if i>=a else 0) + c2*(s2[i-b2] if i>=b2 else 0) for i in range(N+1))
+                    yech = tuple(sorted([f"{c:+d}*q^{a}*{nomi}", f"{c2:+d}*q^{b2}*{n2}"])) + (("[260-koeff tasdiq: MOS]" if tas else "[260-koeff tasdiq: FARQ — rad]"),)
                     if yech not in top: top.append(yech)
     print(f"### {nomT}: {len(top)} ta 2-hadli nomzod")
     for y in top[:6]: print("   ", " ".join(y))
@@ -87,5 +91,8 @@ for i,x in enumerate(B2t):
     if i+1<=N: B2[i+1]=x
 T1 = [x-y for x,y in zip(kop(kop(A1,A1),A1), kop(kop(B1,B1),B1))]
 T2 = [x+y for x,y in zip(kop(kop(A2,A2),A2), kop(kop(B2,B2),B2))]
+# NAZORAT (12-bazada, xuddi shu qidiruv): (A1-B1)^3 = (8.2.9) qayta topilishi kerak
+T0 = [x-y for x,y in zip(A1,B1)]; T0 = kop(kop(T0,T0),T0)
+t0 = qidir2(T0, "NAZORAT: (A1-B1)^3 (7,8) — kutiladi (8.2.9): f23*f14^3/f312 + q^2*f312^3")
 t1 = qidir2(T1, "NISHON-1: A1^3-B1^3 (7,8)")
 t2 = qidir2(T2, "NISHON-2: A2^3+B2^3 (4,11)")

@@ -77,7 +77,7 @@ def uchinchi(T,arlar,nomT,trivial):
                 # R ni 2-hadli qidir
                 for n2,s2 in monlar:
                     for a2 in range(0,4):
-                        for c2 in (1,-1):
+                        for c2 in (1,-1,2,-2,3,-3):
                             key=tuple(R[i]-c2*(s2[i-a2] if i>=a2 else 0) for i in range(K))
                             if key in H:
                                 c3,b3,n3=H[key]

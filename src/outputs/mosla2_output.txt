@@ -1,0 +1,12 @@
+monomiallar: 2344
+koeffitsientlar: c in {±1,±2,±3}; siljish 0..3; hash K = 80 ; tasdiq N = 260
+### NAZORAT: (A1-B1)^3 (7,8) — kutiladi (8.2.9): f23*f14^3/f312 + q^2*f312^3: 1 ta 2-hadli nomzod
+    +1*q^0*f14^3*f23*f312^-1 +1*q^2*f312^3 [260-koeff tasdiq: MOS]
+### NISHON-1: A1^3-B1^3 (7,8): 3 ta 2-hadli nomzod
+    +1*q^0*f312^-1*f69*E5^3 -2*q^3*f213^3 [260-koeff tasdiq: MOS]
+    +2*q^0*f78^3 -1*q^0*f312^-1*f69*E5^3 [260-koeff tasdiq: MOS]
+    +1*q^0*f78^3 -1*q^3*f213^3 [260-koeff tasdiq: MOS]
+### NISHON-2: A2^3+B2^3 (4,11): 3 ta 2-hadli nomzod
+    +1*q^0*f312*f69^-1*E5^3 +2*q^3*f114^3 [260-koeff tasdiq: MOS]
+    +2*q^0*f411^3 -1*q^0*f312*f69^-1*E5^3 [260-koeff tasdiq: MOS]
+    +1*q^0*f411^3 +1*q^3*f114^3 [260-koeff tasdiq: MOS]
